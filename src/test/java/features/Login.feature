@@ -1,6 +1,6 @@
 Feature:  Login OK.
 
-  Scenario Outline:  Log-in with valid credentials
+  Scenario Outline:  Log-in with different credentials
     When Access to the URL
     And Type user name "<user>"
     And Type password "<password>"
@@ -13,5 +13,3 @@ Feature:  Login OK.
       | locked_out_user | secret_sauce | Locked   |
       | user            | secret_sauce | Error    |
       | standard_user   | password     | Password |
-
-

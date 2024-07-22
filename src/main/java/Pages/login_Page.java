@@ -1,51 +1,46 @@
 package Pages;
 
-import StepDefinition.Login;
 import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-
-import static StepDefinition.Login.wait;
+import java.time.Duration;
 
 public class login_Page {
-    public static WebDriver driver;
-    public Login login;
-
-
-    public login_Page(WebDriver driver) {
-        this.driver = driver;
-        this.login = new Login();
-    }
+    public WebDriver driver;
+    public WebDriverWait wait;
 
     public By userNameLocator = By.id("user-name");
     public By passwordLocator = By.id("password");
     public By loginButtonLocator = By.id("login-button");
 
-    public void userNameMethod(String user) {
-        WebElement nameInput = driver.findElement(userNameLocator);
-        nameInput.sendKeys(user);
+    public login_Page(WebDriver driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
-    public void passwordMethod(String password) {
+    public void userNameMethod(String standard_use) {
+        WebElement nameInput = driver.findElement(userNameLocator);
+        nameInput.sendKeys(standard_use);
+    }
+
+    public void passwordMethod(String secret_sauce) {
         WebElement passwordInput = driver.findElement(passwordLocator);
-        passwordInput.sendKeys(password);
+        passwordInput.sendKeys(secret_sauce);
     }
 
     public void loginButtonClick() {
         WebElement loginButton = driver.findElement(loginButtonLocator);
         loginButton.click();
-
     }
-    public static void inventoryTitle(String text) {
-        By signLocator=By.xpath("//*[text()='"+text+"']");
+
+    public void inventoryTitle(String text) {
+        By signLocator = By.xpath("//*[text()='" + text + "']");
         wait.until(ExpectedConditions.visibilityOfElementLocated(signLocator));
         WebElement sign = driver.findElement(signLocator);
-        Assert.isTrue(sign.getText().equals(text),"error");
+        Assert.isTrue(sign.getText().equals(text), "error");
     }
-
-
-
 }
