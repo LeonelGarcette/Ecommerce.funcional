@@ -66,10 +66,7 @@ public class Login {
             case "Locked":
                 LoginPage.inventoryTitle("Epic sadface: Sorry, this user has been locked out.");
                 break;
-            case "Error":
-                LoginPage.inventoryTitle("Epic sadface: Username and password do not match any user in this service");
-                break;
-            case "Password":
+            case "Error", "Password":
                 LoginPage.inventoryTitle("Epic sadface: Username and password do not match any user in this service");
                 break;
             default:
